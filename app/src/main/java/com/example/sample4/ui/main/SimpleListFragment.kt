@@ -1,25 +1,28 @@
 package com.example.sample4.ui.main
 
-import android.R
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.ListFragment
 
 
-public class SimpleListFragment : ListFragment() {
+class SimpleListFragment : ListFragment() {
 
-    // определяем массив типа String
-    val catNames = arrayOf(
-        "Рыжик", "Барсик", "Мурзик", "Мурка", "Васька", "Томасина", "Кристина", "Пушок", "Дымка",
-        "Кузя", "Китти", "Масяня", "Симба", "Рыся"
-    )
+    private val catNames = ArrayList<String>().apply {
+        addAll( listOf(
+            "Рыжик", "Барсик", "Мурзик", "Мурка", "Васька", "Томасина", "Кристина", "Пушок", "Дымка",
+            "Кузя", "Китти", "Масяня", "Симба", "Рыся"
+        ))
+    }
+
+    private var adapter : ArrayAdapter<String>? = null
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val adapter: ListAdapter = ArrayAdapter(
+        adapter = ArrayAdapter(
             activity!!,
-            R.layout.simple_list_item_1, catNames
+            android.R.layout.simple_list_item_1, catNames
         )
         listAdapter = adapter
     }
@@ -28,5 +31,7 @@ public class SimpleListFragment : ListFragment() {
         super.onListItemClick(listView, view, position, id)
         val textView : TextView = view as TextView
         Toast.makeText(activity, "Вы выбрали : $position) ${textView.text}", Toast.LENGTH_SHORT).show()
+        catNames.removeAt(position)
+        adapter?.notifyDataSetChanged()
     }
 }

@@ -17,7 +17,6 @@ class SimpleListFragment : ListFragment() {
 
     private var adapter : ArrayAdapter<String>? = null
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         adapter = ArrayAdapter(

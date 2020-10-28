@@ -37,6 +37,7 @@ class WebListFragment : ListFragment() {
         Toast.makeText(activity, "Вы выбрали : $position) ${currentData[position]}", Toast.LENGTH_SHORT).show()
         loadData{ loadCategories(currentData[position].url, ".v a.hre b") }
     }
+
     fun loadData(getList: () -> List<WebItem>) {
         Thread {
             try {

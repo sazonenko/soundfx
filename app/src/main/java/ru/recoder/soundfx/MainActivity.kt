@@ -18,7 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         val tabs: TabLayout = findViewById(R.id.tabs)
         TabLayoutMediator(tabs, viewPager) {
-            tab, position -> tab.text = "Tab ${(position + 1)}"
+            tab, position -> tab.text = when(position) {
+                0 -> "Phone"
+                1 -> "Web"
+                else -> "Tab ${position+1}"
+            }
         }.attach()
     }
 }

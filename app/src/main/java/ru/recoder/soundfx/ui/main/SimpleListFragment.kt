@@ -30,7 +30,5 @@ class SimpleListFragment : ListFragment() {
         super.onListItemClick(listView, view, position, id)
         val textView : TextView = view as TextView
         Toast.makeText(activity, "Вы выбрали : $position) ${textView.text}", Toast.LENGTH_SHORT).show()
-        catNames.removeAt(position)
-        adapter?.notifyDataSetChanged()
     }
 }

@@ -31,7 +31,7 @@ class WebPageFragment(val site: SiteAdapter) : ListFragment() {
     override fun onListItemClick(listView: ListView, view: View, position: Int, id: Long) {
         super.onListItemClick(listView, view, position, id)
         Toast.makeText(activity, "Вы выбрали : $position) ${currentData[position]}", Toast.LENGTH_SHORT).show()
-        (activity as MainActivity).showPage(1)
+        (activity as MainActivity).playSound(currentData[position].url)
     }
 
     override fun onResume() {
@@ -45,8 +45,10 @@ class WebPageFragment(val site: SiteAdapter) : ListFragment() {
 
     fun setUrl(newUrl : String) {
         Log.d(javaClass.name, "setUrl $url -> $newUrl")
-        url = newUrl
-        updated = false
+        if (newUrl != url) {
+            url = newUrl
+            updated = false
+        }
     }
 
     fun loadData(nullableUrl : String?) {

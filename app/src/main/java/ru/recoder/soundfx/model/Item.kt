@@ -6,8 +6,8 @@ open class Item(protected val name : String) {
     }
 }
 
-class WebItem(name : String, val url : String) : Item(name)
+open class WebItem(name : String, val url : String) : Item(name)
 
-class WebSoundItem(name : String, val url : String) : Item(name)
+class WebSoundItem(name : String, url : String) : WebItem(name, url)
 
 class FileItem(name : String, val path : String) : Item(name)

@@ -6,12 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import ru.recoder.soundfx.service.MediaService
 import ru.recoder.soundfx.ui.main.SectionsPagerAdapter
-import ru.recoder.soundfx.ui.main.WebPageFragment
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
+    private val mediaService = MediaService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +43,6 @@ class MainActivity : AppCompatActivity() {
         return viewPager.adapter as SectionsPagerAdapter
     }
 
-    fun getPageFragment() : WebPageFragment {
-        return (viewPager.adapter as SectionsPagerAdapter).getPageFragment()
-    }
-
     fun showPage(pos : Int) {
         Log.d(javaClass.name, "showPage ${viewPager.currentItem} -> $pos")
         if (pos in 0..2) {
@@ -53,5 +50,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             Log.w(javaClass.name, "Incorrect page number: $pos")
         }
+    }
+
+    fun playSound(url : String) {
+
+        mediaService.playAudio(applicationContext, url)
     }
 }
